@@ -11,7 +11,7 @@ const Autocomplete = ({ trie }) => {
     const value = e.target.value;
     setInputValue(value);
     if(value.length > 0){
-        setSuggestions(trie.autocomplete(value));
+        setSuggestions(trie.autoComplete(value));
     } else {
         setSuggestions([]);
     }
@@ -24,7 +24,7 @@ const Autocomplete = ({ trie }) => {
 
   
   return (
-    <div>
+    <div className="autocomplete-container">
       <input
         type="text"
         value={inputValue}
