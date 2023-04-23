@@ -5,7 +5,15 @@ const Autocomplete = ({ trie }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  const handleInputChange = () => {};
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    if(value.length > 0){
+        setSuggestions(trie.autocomplete(value));
+    } else {
+        setSuggestions([]);
+    }
+  };
 
   const handleSuggestionsClick = (suggestion) => {
     setInputValue(suggestion);
