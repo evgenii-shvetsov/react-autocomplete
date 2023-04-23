@@ -25,3 +25,8 @@
 .suggestions-dropdown li:hover {
   background-color: #f1f1f1;
 }
+
+.suggestions-dropdown li.active {
+  background-color: #007BFF;
+  color: #ffffff;
+}
