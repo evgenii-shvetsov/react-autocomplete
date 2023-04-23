@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+import Trie from "../Trie/Trie";
 import "./Autocomplete.css";
 
 const Autocomplete = ({ trie }) => {
@@ -19,6 +21,8 @@ const Autocomplete = ({ trie }) => {
     setInputValue(suggestion);
     setSuggestions([]);
   };
+
+  
   return (
     <div>
       <input
@@ -37,5 +41,11 @@ const Autocomplete = ({ trie }) => {
     </div>
   );
 };
+
+// removes error from ESlint
+Autocomplete.propTypes = {
+  trie: PropTypes.instanceOf(Trie).isRequired,
+};
+
 
 export default Autocomplete;
