@@ -1,67 +1,117 @@
 import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import Trie from "../Trie/Trie";
+
 import "./Autocomplete.css";
 
 const Autocomplete = ({ trie }) => {
   const [selectedWords, setSelectedWords] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [tempInputValue, setTempInputValue] = useState("");
+  const [typing, setTyping] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
+  const [inputError, setInputError] = useState("");
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
 
+  const resetInput = () => {
+    setInputValue("");
+    setTempInputValue("");
+    setInputError("Word not found");
+  };
+
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
-    setActiveSuggestionIndex(-1);
-    if (value.length > 0) {
-      setSuggestions(trie.autoComplete(value));
+    const newInputValue = e.target.value;
+    setTempInputValue(newInputValue);
+    setTyping(true);
+
+    if (newInputValue) {
+      const newSuggestions = trie.autoComplete(newInputValue);
+      setSuggestions(newSuggestions);
+
+      if (newSuggestions.length > 0) {
+        setInputError("");
+      }
     } else {
       setSuggestions([]);
+      setInputError("");
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (tempInputValue && suggestions.length === 0 && !typing) {
+        resetInput();
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [tempInputValue, suggestions, typing]);
+
+  useEffect(() => {
+    if (typing) {
+      const timer = setTimeout(() => {
+        setTyping(false);
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [typing]);
+
+  useEffect(() => {
+    if (inputError) {
+      const timer = setTimeout(() => {
+        setInputError("");
+      }, 1000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [inputError]);
 
   const handleSuggestionsClick = (suggestion) => {
+  if (!selectedWords.includes(suggestion)) {
     setSelectedWords([...selectedWords, suggestion]);
     setInputValue("");
+    setTempInputValue("");
     setSuggestions([]);
     setActiveSuggestionIndex(-1);
+  }
   };
 
-
-const handleKeyDown = (e) => {
-  if (e.key === "ArrowDown") {
-    setActiveSuggestionIndex((prevIndex) =>
-      prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
-    );
-  } else if (e.key === "ArrowUp") {
-    setActiveSuggestionIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : prevIndex
-    );
-  } else if (e.key === "Enter") {
-    if (activeSuggestionIndex > -1) {
-      handleSuggestionsClick(suggestions[activeSuggestionIndex]);
-      e.preventDefault();
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowDown") {
+      setActiveSuggestionIndex((prevIndex) =>
+        prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    } else if (e.key === "ArrowUp") {
+      setActiveSuggestionIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex
+      );
+    } else if (e.key === "Enter") {
+      if (activeSuggestionIndex > -1) {
+        handleSuggestionsClick(suggestions[activeSuggestionIndex]);
+        e.preventDefault();
+      }
     }
-  }
-};
+  };
 
   const isSelected = inputValue !== "" && !suggestions.length;
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    if (isSelected) {
+  const handleDeleteClick = (index) => {
+    setSelectedWords([
+      ...selectedWords.slice(0, index),
+      ...selectedWords.slice(index + 1),
+    ]);
+    if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, [isSelected]);
-
-
-const handleDeleteClick = (index) => {
-  setSelectedWords([
-    ...selectedWords.slice(0, index),
-    ...selectedWords.slice(index + 1),
-  ]);
-  inputRef.current.focus();
-};
+  };
 
   return (
     <div className="autocomplete-container">
@@ -80,12 +130,12 @@ const handleDeleteClick = (index) => {
         {selectedWords.length < 3 && (
           <input
             type="text"
-            value={inputValue}
+            value={inputValue || tempInputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder="Start typing..."
+            placeholder={inputError ? inputError : "Start typing..."}
             ref={inputRef}
-            className="autocomplete-input"
+            className={`autocomplete-input ${inputError ? "error" : ""}`}
           />
         )}
       </div>

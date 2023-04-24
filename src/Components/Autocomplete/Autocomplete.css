@@ -49,6 +49,8 @@
 }
 .input-wrapper.selected {
   background-color: #f1f1f1;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
 }
 
 .selected-word-box {
@@ -81,6 +83,11 @@
 .autocomplete-input::placeholder {
   color: #aaa;
 }
+
+/* .autocomplete-input.error {
+  color: #ff4d4d;
+} */
+
 
 /* testing new features*/
 
