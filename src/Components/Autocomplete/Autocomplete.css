@@ -38,11 +38,57 @@
     height: 55px;
 
 }
-
-.autocomplete-input.selected {
-  /* Add your custom styles for the selected input value here */
+/* testing new features*/
+.input-wrapper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+  overflow: hidden;
+}
+.input-wrapper.selected {
   background-color: #f1f1f1;
 }
+
+.selected-word-box {
+  display: inline-flex;
+  align-items: center;
+  background-color: #007BFF;
+  color: #ffffff;
+  padding: 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 4px;
+  margin-left: 4px;
+}
+
+.autocomplete-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 8px;
+}
+.autocomplete-input::placeholder {
+  color: #aaa;
+}
+
+/* testing new features*/
+
+
+
+
+
+/* Suggestion Dropdown Styles*/
 
 .suggestions-dropdown {
   position: absolute;
