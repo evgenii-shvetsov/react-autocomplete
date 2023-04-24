@@ -141,15 +141,21 @@ const Autocomplete = ({ trie }) => {
       </div>
 
       <ul className="suggestions-dropdown">
-        {suggestions.map((suggestion, index) => (
-          <li
-            className={index === activeSuggestionIndex ? "active" : ""}
-            key={index}
-            onClick={() => handleSuggestionsClick(suggestion)}
-          >
-            {suggestion}
-          </li>
-        ))}
+        {suggestions.map((suggestion, index) => {
+          const isActive = index === activeSuggestionIndex;
+          const isDisabled = selectedWords.includes(suggestion);
+          return (
+            <li
+              className={`${isActive ? "active" : ""} ${
+                isDisabled ? "disabled" : ""
+              }`}
+              key={index}
+              onClick={() => !isDisabled && handleSuggestionsClick(suggestion)}
+            >
+              {suggestion}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

@@ -132,6 +132,10 @@
   /* background: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);; */
   color: black;
 }
+.suggestions-dropdown li.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
 
 
 
