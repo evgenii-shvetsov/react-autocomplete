@@ -6,8 +6,10 @@ import "./Autocomplete.css";
 
 const Autocomplete = ({ trie }) => {
   const [selectedWords, setSelectedWords] = useState([]);
+  const [hoveredSuggestion, setHoveredSuggestion] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [tempInputValue, setTempInputValue] = useState("");
+
   const [typing, setTyping] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [inputError, setInputError] = useState("");
@@ -20,23 +22,27 @@ const Autocomplete = ({ trie }) => {
     setInputError("Word not found");
   };
 
-  const handleInputChange = (e) => {
-    const newInputValue = e.target.value;
-    setTempInputValue(newInputValue);
-    setTyping(true);
+const handleInputChange = (e) => {
+  const newInputValue = e.target.value;
+  setTempInputValue(newInputValue);
+  setTyping(true);
 
-    if (newInputValue) {
-      const newSuggestions = trie.autoComplete(newInputValue);
-      setSuggestions(newSuggestions);
+  if (newInputValue) {
+    const newSuggestions = trie.autoComplete(newInputValue);
+    setSuggestions(newSuggestions);
 
-      if (newSuggestions.length > 0) {
-        setInputError("");
-      }
-    } else {
-      setSuggestions([]);
+    if (newSuggestions.length > 0) {
       setInputError("");
     }
-  };
+  } else {
+    setSuggestions([]);
+    setInputError("");
+  }
+
+  if (hoveredSuggestion) {
+    setHoveredSuggestion("");
+  }
+};
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -74,32 +80,40 @@ const Autocomplete = ({ trie }) => {
     }
   }, [inputError]);
 
-  const handleSuggestionsClick = (suggestion) => {
-    if (!selectedWords.includes(suggestion)) {
-      setSelectedWords([...selectedWords, suggestion]);
-      setInputValue("");
-      setTempInputValue("");
-      setSuggestions([]);
-      setActiveSuggestionIndex(-1);
-    }
-  };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowDown") {
-      setActiveSuggestionIndex((prevIndex) =>
-        prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
-      );
-    } else if (e.key === "ArrowUp") {
-      setActiveSuggestionIndex((prevIndex) =>
-        prevIndex > 0 ? prevIndex - 1 : prevIndex
-      );
-    } else if (e.key === "Enter") {
-      if (activeSuggestionIndex > -1) {
-        handleSuggestionsClick(suggestions[activeSuggestionIndex]);
-        e.preventDefault();
-      }
+const handleSuggestionsClick = (suggestion) => {
+  if (!selectedWords.includes(suggestion)) {
+    setSelectedWords([...selectedWords, suggestion]);
+    setInputValue("");
+    setTempInputValue("");
+    setSuggestions([]);
+    setActiveSuggestionIndex(-1);
+  }
+  setHoveredSuggestion("");
+};
+
+
+const handleKeyDown = (e) => {
+  if (e.key === "ArrowDown") {
+    setActiveSuggestionIndex((prevIndex) => {
+      const newIndex =
+        prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex;
+      setHoveredSuggestion(suggestions[newIndex]);
+      return newIndex;
+    });
+  } else if (e.key === "ArrowUp") {
+    setActiveSuggestionIndex((prevIndex) => {
+      const newIndex = prevIndex > 0 ? prevIndex - 1 : prevIndex;
+      setHoveredSuggestion(suggestions[newIndex]);
+      return newIndex;
+    });
+  } else if (e.key === "Enter") {
+    if (activeSuggestionIndex > -1) {
+      handleSuggestionsClick(suggestions[activeSuggestionIndex]);
+      e.preventDefault();
     }
-  };
+  }
+};
 
   const isSelected = inputValue !== "" && !suggestions.length;
   const inputRef = useRef(null);
@@ -140,7 +154,8 @@ const Autocomplete = ({ trie }) => {
         {selectedWords.length < 3 && (
           <input
             type="text"
-            value={inputValue || tempInputValue}
+            // value={inputValue || tempInputValue}
+            value={hoveredSuggestion || tempInputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder={inputError ? inputError : "Start typing..."}
@@ -165,6 +180,8 @@ const Autocomplete = ({ trie }) => {
               }`}
               key={index}
               onClick={() => !isDisabled && handleSuggestionsClick(suggestion)}
+              onMouseEnter={() => setHoveredSuggestion(suggestion)}
+              onMouseLeave={() => setHoveredSuggestion("")}
             >
               {suggestion}
             </li>
