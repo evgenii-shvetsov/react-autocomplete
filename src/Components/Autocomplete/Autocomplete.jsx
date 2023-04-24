@@ -7,6 +7,7 @@ const Autocomplete = ({ trie }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
+  const isSelected = inputValue !== "" && !suggestions.length;
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -44,6 +45,8 @@ const Autocomplete = ({ trie }) => {
   return (
     <div className="autocomplete-container">
       <input
+        // className="autocomplete-input"
+        className={`autocomplete-input ${isSelected ? "selected" : ""}`}
         type="text"
         value={inputValue}
         onChange={handleInputChange}
