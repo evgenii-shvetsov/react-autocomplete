@@ -12,6 +12,7 @@ const Autocomplete = ({ trie }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [inputError, setInputError] = useState("");
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
+  const [deletingIndex, setDeletingIndex] = useState(null);
 
   const resetInput = () => {
     setInputValue("");
@@ -74,13 +75,13 @@ const Autocomplete = ({ trie }) => {
   }, [inputError]);
 
   const handleSuggestionsClick = (suggestion) => {
-  if (!selectedWords.includes(suggestion)) {
-    setSelectedWords([...selectedWords, suggestion]);
-    setInputValue("");
-    setTempInputValue("");
-    setSuggestions([]);
-    setActiveSuggestionIndex(-1);
-  }
+    if (!selectedWords.includes(suggestion)) {
+      setSelectedWords([...selectedWords, suggestion]);
+      setInputValue("");
+      setTempInputValue("");
+      setSuggestions([]);
+      setActiveSuggestionIndex(-1);
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -104,20 +105,29 @@ const Autocomplete = ({ trie }) => {
   const inputRef = useRef(null);
 
   const handleDeleteClick = (index) => {
-    setSelectedWords([
-      ...selectedWords.slice(0, index),
-      ...selectedWords.slice(index + 1),
-    ]);
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    setDeletingIndex(index);
+    setTimeout(() => {
+      setSelectedWords([
+        ...selectedWords.slice(0, index),
+        ...selectedWords.slice(index + 1),
+      ]);
+      setDeletingIndex(null);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 500);
   };
 
   return (
     <div className="autocomplete-container">
       <div className={`input-wrapper ${isSelected ? "selected" : ""}`}>
         {selectedWords.map((selectedWord, index) => (
-          <div key={index} className="selected-word-box">
+          <div
+            key={index}
+            className={`selected-word-box${
+              deletingIndex === index ? " fade-out" : ""
+            }`}
+          >
             <span>{selectedWord}</span>
             <button
               className="delete-button"
@@ -140,7 +150,11 @@ const Autocomplete = ({ trie }) => {
         )}
       </div>
 
-      <ul className="suggestions-dropdown">
+      <ul
+        className={`suggestions-dropdown ${
+          suggestions.length > 0 ? "open" : ""
+        }`}
+      >
         {suggestions.map((suggestion, index) => {
           const isActive = index === activeSuggestionIndex;
           const isDisabled = selectedWords.includes(suggestion);
