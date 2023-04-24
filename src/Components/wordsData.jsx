@@ -74,7 +74,7 @@ let wordsData = [
   "youtube",
   "yaml",
   "yottabyte",
-  "zip-file",
+  "zip",
   "zettabyte",
   "zoom",
 ];

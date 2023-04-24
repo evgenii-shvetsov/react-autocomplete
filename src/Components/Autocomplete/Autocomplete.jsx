@@ -154,7 +154,6 @@ const handleKeyDown = (e) => {
         {selectedWords.length < 3 && (
           <input
             type="text"
-            // value={inputValue || tempInputValue}
             value={hoveredSuggestion || tempInputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
