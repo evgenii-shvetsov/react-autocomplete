@@ -1,6 +1,7 @@
 import "./App.css";
 import Trie from "./Components/Trie/Trie";
 import Autocomplete from "./Components/Autocomplete/Autocomplete";
+import Header from "./Components/Header/Header";
 
 function App() {
   const trie = new Trie();
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Autocomplete with Trie and React</h1>
+      <Header />
       <Autocomplete trie={trie} />
     </div>
   );
