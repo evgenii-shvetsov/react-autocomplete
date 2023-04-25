@@ -86,26 +86,10 @@
     color: purple
 }
 
-.autocomplete-input {
-  flex-grow: 1;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 8px;
-}
+
 .autocomplete-input::placeholder {
   color: #aaa;
 }
-
-/* .autocomplete-input.error {
-  color: #ff4d4d;
-} */
-
-
-/* testing new features*/
-
-
-
 
 
 /* Suggestion Dropdown Styles*/
