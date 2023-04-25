@@ -42,7 +42,7 @@
 .input-wrapper {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #cccccc4a;
+  /* border: 1px solid #cccccc4a; */
   border-radius: 4px;
   padding: 4px;
   overflow: hidden;
