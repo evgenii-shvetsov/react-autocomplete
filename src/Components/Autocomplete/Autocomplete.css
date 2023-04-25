@@ -3,6 +3,31 @@
   position: relative;
 }
 
+.input-content {
+  position: relative;
+  flex-grow: 1;
+  height: 55px;
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.input-content span {
+  display: inline-flex;
+}
+.selected-word-box-container {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 22px;
+  align-items: center;
+  z-index: 2;
+}
 .autocomplete-input{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -36,11 +61,16 @@
     max-width: 620px;
     min-width: 420px;
     height: 55px;
+    z-index: 1;
+    pointer-events: none;
+    
+
+
 
 }
 /* testing new features*/
 .input-wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   /* border: 1px solid #cccccc4a; */
   border-radius: 4px;
@@ -53,8 +83,11 @@
   border: 1px solid #ff4d4d;
 }
 
+
+
 .autocomplete-input:focus{
     box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #a6e5ff, 0 0 2px 4px #006aff;
+    pointer-events: auto;
     /* box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #ffa6d9, 0 0 2px 4px #00ccff; */
 }
 
@@ -70,6 +103,7 @@
   margin-left: 5px;
   margin-right: 10px;
   animation: fadeIn 0.5s ease-out;
+  
 }
 
 .delete-button {

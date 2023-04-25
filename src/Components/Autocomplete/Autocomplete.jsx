@@ -16,6 +16,8 @@ const Autocomplete = ({ trie }) => {
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const [deletingIndex, setDeletingIndex] = useState(null);
 
+  const [inputPadding, setInputPadding] = useState(0);
+
   const resetInput = () => {
     setInputValue("");
     setTempInputValue("");
@@ -80,6 +82,15 @@ const Autocomplete = ({ trie }) => {
     }
   }, [inputError]);
 
+  useEffect(() => {
+    let totalWidth = 0;
+    const boxes = document.querySelectorAll(".selected-word-box");
+    boxes.forEach((box) => {
+      totalWidth += box.offsetWidth;
+    });
+    setInputPadding(totalWidth + 50); 
+  }, [selectedWords]);
+
   const handleSuggestionsClick = (suggestion) => {
     if (!selectedWords.includes(suggestion)) {
       setSelectedWords([...selectedWords, suggestion]);
@@ -133,33 +144,41 @@ const Autocomplete = ({ trie }) => {
   return (
     <div className="autocomplete-container">
       <div className={`input-wrapper ${isSelected ? "selected" : ""}`}>
-        {selectedWords.map((selectedWord, index) => (
+        <div className="input-content">
           <div
-            key={index}
-            className={`selected-word-box${
-              deletingIndex === index ? " fade-out" : ""
-            }`}
+            className="selected-word-box-container"
+            onClick={() => inputRef.current.focus()}
           >
-            <span>{selectedWord}</span>
-            <button
-              className="delete-button"
-              onClick={() => handleDeleteClick(index)}
-            >
-              x
-            </button>
+            {selectedWords.map((selectedWord, index) => (
+              <div
+                key={index}
+                className={`selected-word-box${
+                  deletingIndex === index ? " fade-out" : ""
+                }`}
+              >
+                <span>{selectedWord}</span>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeleteClick(index)}
+                >
+                  x
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-        {selectedWords.length < 3 && (
-          <input
-            type="text"
-            value={hoveredSuggestion || tempInputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder={inputError ? inputError : "Start typing..."}
-            ref={inputRef}
-            className={`autocomplete-input ${inputError ? "error" : ""}`}
-          />
-        )}
+          {selectedWords.length < 3 && (
+            <input
+              type="text"
+              style={{ paddingLeft: inputPadding }}
+              value={hoveredSuggestion || tempInputValue}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              placeholder={inputError ? inputError : "Start typing..."}
+              ref={inputRef}
+              className={`autocomplete-input ${inputError ? "error" : ""}`}
+            />
+          )}
+        </div>
       </div>
 
       <ul
