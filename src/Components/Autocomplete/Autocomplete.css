@@ -62,7 +62,7 @@
     min-width: 420px;
     height: 55px;
     z-index: 1;
-    pointer-events: none;
+    /* pointer-events: none; */
     
 
 
@@ -87,7 +87,7 @@
 
 .autocomplete-input:focus{
     box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #a6e5ff, 0 0 2px 4px #006aff;
-    pointer-events: auto;
+    /* pointer-events: auto; */
     /* box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #ffa6d9, 0 0 2px 4px #00ccff; */
 }
 
@@ -103,6 +103,8 @@
   margin-left: 5px;
   margin-right: 10px;
   animation: fadeIn 0.5s ease-out;
+  border: 1px solid #80808033;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   
 }
 
