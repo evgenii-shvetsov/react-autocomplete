@@ -30,47 +30,43 @@
   z-index: 2;
   /* justify-content: center; */
 }
-.autocomplete-input{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 100%;
-    margin: 0;
-    padding-left: 16px;
-    padding-right: 22px;
-    /* background-color: #f6f6fabf; */
-    background-color: #f6f6fa8a;
-    border: 1px solid;
-    border-color: #D1D1D5;
-    border-radius: 4px;
-    box-sizing: border-box;
-    caret-color: #006AFF;
-    cursor: text;
-    outline: none;
-    box-shadow: none;
-    color: #2A2A33;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-transform: none;
-    font-family: "Open Sans","Adjusted Arial",Tahoma,Geneva,sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    line-height: 24px;
-    height: auto;
-    color:black;
-    max-width: 620px;
-    min-width: 420px;
-    height: 55px;
-    z-index: 1;
-    
-    /* pointer-events: none; */
-    
+.autocomplete-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  margin: 0;
+  padding-left: 16px;
+  padding-right: 22px;
+  /* background-color: #f6f6fabf; */
+  background-color: #f6f6fa8a;
+  border: 1px solid;
+  border-color: #d1d1d5;
+  border-radius: 4px;
+  box-sizing: border-box;
+  caret-color: #006aff;
+  cursor: text;
+  outline: none;
+  box-shadow: none;
+  color: #2a2a33;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-transform: none;
+  font-family: "Open Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  line-height: 24px;
+  height: auto;
+  color: black;
+  max-width: 620px;
+  min-width: 420px;
+  height: 55px;
+  z-index: 1;
 
-
-
+  /* pointer-events: none; */
 }
 /* testing new features*/
 .input-wrapper {
@@ -87,12 +83,10 @@
   border: 1px solid #ff4d4d;
 }
 
-
-
-.autocomplete-input:focus{
-    box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #a6e5ff, 0 0 2px 4px #006aff;
-    /* pointer-events: auto; */
-    /* box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #ffa6d9, 0 0 2px 4px #00ccff; */
+.autocomplete-input:focus {
+  box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #a6e5ff, 0 0 2px 4px #006aff;
+  /* pointer-events: auto; */
+  /* box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #ffa6d9, 0 0 2px 4px #00ccff; */
 }
 
 .selected-word-box {
@@ -109,7 +103,6 @@
   animation: fadeIn 0.5s ease-out;
   border: 1px solid #80808033;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
 }
 
 .delete-button {
@@ -121,19 +114,24 @@
   font-size: 12px;
   padding: 0 4px;
   margin-left: 4px;
+  background-color: transparent;
+  border-radius: 30%;
+  padding: 2px 5px;
+  color: #ffffff;
 }
-.delete-button:hover{
-    color: purple
+.delete-button:hover {
+  background-color: #e83535;
 }
-
+.delete-button:active {
+  color: purple;
+  background-color: #b82a2a;
+}
 
 ::placeholder {
   color: #aaa;
-  
 }
 
-
-input::placeholder{
+input::placeholder {
   color: grey;
 }
 
@@ -162,37 +160,43 @@ input::placeholder{
   transition: max-height 0.5s ease-out;
   transition-delay: 0s;
 
-      margin-top: 4px;
-    /* margin-left: 10px; */
-    margin-right: 10px;
-
-
+  margin-top: 4px;
+  /* margin-left: 10px; */
+  margin-right: 10px;
 }
 .suggestions-dropdown.open {
-  max-height: 200px; 
+  max-height: 200px;
   transition-delay: 0.1s;
 }
 
 .suggestions-dropdown li {
   padding: 12px 16px;
   cursor: pointer;
-  color:black
+  color: black;
 }
 
 .suggestions-dropdown li:hover {
-  background: linear-gradient(135deg,rgb(255 203 226 / 11%) 0%,rgb(182 227 212 / 59%) 50%,rgb(226 133 201 / 0%) 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(255 203 226 / 11%) 0%,
+    rgb(182 227 212 / 59%) 50%,
+    rgb(226 133 201 / 0%) 100%
+  );
 }
 
 .suggestions-dropdown li.active {
-  background: linear-gradient(135deg,rgb(255 203 226 / 11%) 0%,rgb(182 227 212 / 59%) 50%,rgb(226 133 201 / 0%) 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(255 203 226 / 11%) 0%,
+    rgb(182 227 212 / 59%) 50%,
+    rgb(226 133 201 / 0%) 100%
+  );
   color: black;
 }
 .suggestions-dropdown li.disabled {
   color: #ccc;
   cursor: not-allowed;
 }
-
-
 
 /* animation */
 
@@ -204,7 +208,6 @@ input::placeholder{
     opacity: 1;
   }
 }
-
 
 @keyframes fadeOut {
   0% {

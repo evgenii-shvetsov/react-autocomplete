@@ -46,8 +46,6 @@ const Autocomplete = ({ trie }) => {
     }
   };
 
-
-
   useEffect(() => {
     const timer = setTimeout(() => {
       if (tempInputValue && suggestions.length === 0 && !typing) {
@@ -90,7 +88,7 @@ const Autocomplete = ({ trie }) => {
     boxes.forEach((box) => {
       totalWidth += box.offsetWidth;
     });
-    setInputPadding(selectedWords.length > 0 ? totalWidth + 50 : 20); 
+    setInputPadding(selectedWords.length > 0 ? totalWidth + 50 : 20);
   }, [selectedWords]);
 
   const handleSuggestionsClick = (suggestion) => {
@@ -129,20 +127,20 @@ const Autocomplete = ({ trie }) => {
   const isSelected = inputValue !== "" && !suggestions.length;
   const inputRef = useRef(null);
 
-const handleDeleteClick = (index, e) => {
-  e.stopPropagation();
-  setDeletingIndex(index);
-  setTimeout(() => {
-    setSelectedWords([
-      ...selectedWords.slice(0, index),
-      ...selectedWords.slice(index + 1),
-    ]);
-    setDeletingIndex(null);
-    if (inputRef.current !== null) {
-      inputRef.current.focus();
-    }
-  }, 500);
-};
+  const handleDeleteClick = (index, e) => {
+    e.stopPropagation();
+    setDeletingIndex(index);
+    setTimeout(() => {
+      setSelectedWords([
+        ...selectedWords.slice(0, index),
+        ...selectedWords.slice(index + 1),
+      ]);
+      setDeletingIndex(null);
+      if (inputRef.current !== null) {
+        inputRef.current.focus();
+      }
+    }, 500);
+  };
 
   return (
     <div className="autocomplete-container">
@@ -150,6 +148,10 @@ const handleDeleteClick = (index, e) => {
         <div className="input-content">
           <div
             className="selected-word-box-container"
+            style={{
+              justifyContent: selectedWords.length === 3 ? "center" : "",
+              paddingLeft: selectedWords.length === 3 ? "0" : "16px",
+            }}
             onClick={() => inputRef.current.focus()}
           >
             {selectedWords.map((selectedWord, index) => (
@@ -173,13 +175,12 @@ const handleDeleteClick = (index, e) => {
             <input
               type="text"
               style={{ paddingLeft: inputPadding }}
+              className="autocomplete-input"
               value={hoveredSuggestion || tempInputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder={inputError ? inputError : "Start typing..."}
               ref={inputRef}
-              // className={`autocomplete-input ${inputError ? "error" : ""}`}
-              className="autocomplete-input"
             />
           )}
         </div>
