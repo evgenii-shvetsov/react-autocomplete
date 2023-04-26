@@ -74,7 +74,7 @@ const Autocomplete = ({ trie }) => {
     if (inputError) {
       const timer = setTimeout(() => {
         setInputError("");
-      }, 1000);
+      }, 1500);
 
       return () => {
         clearTimeout(timer);
@@ -88,7 +88,7 @@ const Autocomplete = ({ trie }) => {
     boxes.forEach((box) => {
       totalWidth += box.offsetWidth;
     });
-    setInputPadding(totalWidth + 50); 
+    setInputPadding(selectedWords.length > 0 ? totalWidth + 50 : 20); 
   }, [selectedWords]);
 
   const handleSuggestionsClick = (suggestion) => {
@@ -127,19 +127,20 @@ const Autocomplete = ({ trie }) => {
   const isSelected = inputValue !== "" && !suggestions.length;
   const inputRef = useRef(null);
 
-  const handleDeleteClick = (index) => {
-    setDeletingIndex(index);
-    setTimeout(() => {
-      setSelectedWords([
-        ...selectedWords.slice(0, index),
-        ...selectedWords.slice(index + 1),
-      ]);
-      setDeletingIndex(null);
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }, 500);
-  };
+const handleDeleteClick = (index, e) => {
+  e.stopPropagation();
+  setDeletingIndex(index);
+  setTimeout(() => {
+    setSelectedWords([
+      ...selectedWords.slice(0, index),
+      ...selectedWords.slice(index + 1),
+    ]);
+    setDeletingIndex(null);
+    if (inputRef.current !== null) {
+      inputRef.current.focus();
+    }
+  }, 500);
+};
 
   return (
     <div className="autocomplete-container">
@@ -159,7 +160,7 @@ const Autocomplete = ({ trie }) => {
                 <span>{selectedWord}</span>
                 <button
                   className="delete-button"
-                  onClick={() => handleDeleteClick(index)}
+                  onClick={(e) => handleDeleteClick(index, e)}
                 >
                   x
                 </button>
@@ -175,7 +176,8 @@ const Autocomplete = ({ trie }) => {
               onKeyDown={handleKeyDown}
               placeholder={inputError ? inputError : "Start typing..."}
               ref={inputRef}
-              className={`autocomplete-input ${inputError ? "error" : ""}`}
+              // className={`autocomplete-input ${inputError ? "error" : ""}`}
+              className="autocomplete-input"
             />
           )}
         </div>
