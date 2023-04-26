@@ -46,6 +46,8 @@ const Autocomplete = ({ trie }) => {
     }
   };
 
+
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (tempInputValue && suggestions.length === 0 && !typing) {
