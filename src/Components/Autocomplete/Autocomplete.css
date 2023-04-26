@@ -90,19 +90,19 @@
 }
 
 .selected-word-box {
-  display: inline-flex;
-  align-items: center;
-  /* background-color: #007BFF; */
-  background-color: #8ed1fc;
-  /* color: #ffffff; */
-  color: black;
-  padding: 6px;
-  border-radius: 4px;
-  margin-left: 5px;
-  margin-right: 10px;
-  animation: fadeIn 0.5s ease-out;
-  border: 1px solid #80808033;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+display: inline-flex;
+    align-items: center;
+    /* background-color: #007BFF; */
+    background-color: #8ed1fc;
+    /* color: #ffffff; */
+    color: black;
+    padding: 6px;
+    border-radius: 11px;
+    margin-left: 5px;
+    margin-right: 10px;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid #8080808a;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 55%);
 }
 
 .delete-button {

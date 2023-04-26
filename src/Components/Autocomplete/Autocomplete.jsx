@@ -166,7 +166,7 @@ const Autocomplete = ({ trie }) => {
                   className="delete-button"
                   onClick={(e) => handleDeleteClick(index, e)}
                 >
-                  x
+                  ✘
                 </button>
               </div>
             ))}
