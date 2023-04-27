@@ -7,7 +7,6 @@
   position: relative;
   flex-grow: 1;
   height: 55px;
-  /* min-width: 400px; */
   min-width: 450px;
   display: flex;
   align-items: center;
@@ -16,6 +15,7 @@
 .input-content span {
   display: inline-flex;
 }
+
 .selected-word-box-container {
   position: absolute;
   display: flex;
@@ -28,17 +28,15 @@
   padding-right: 22px;
   align-items: center;
   z-index: 2;
-  /* justify-content: center; */
 }
+
 .autocomplete-input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   width: 100%;
   margin: 0;
   padding-left: 16px;
   padding-right: 22px;
-  /* background-color: #f6f6fabf; */
+  padding-top: 9px;
+  padding-bottom: 9px;
   background-color: #f6f6fa8a;
   border: 1px solid;
   border-color: #d1d1d5;
@@ -49,30 +47,21 @@
   outline: none;
   box-shadow: none;
   color: #2a2a33;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-transform: none;
   font-family: "Open Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  line-height: 24px;
-  height: auto;
   color: black;
   max-width: 620px;
   min-width: 420px;
   height: 55px;
   z-index: 1;
-
-  /* pointer-events: none; */
 }
-/* testing new features*/
+
 .input-wrapper {
   display: flex;
   align-items: center;
-  /* border: 1px solid #cccccc4a; */
   border-radius: 4px;
   padding: 4px;
   overflow: hidden;
@@ -85,24 +74,20 @@
 
 .autocomplete-input:focus {
   box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #a6e5ff, 0 0 2px 4px #006aff;
-  /* pointer-events: auto; */
-  /* box-shadow: 0 0 0px 1px #fff, 0 0 2px 3px #ffa6d9, 0 0 2px 4px #00ccff; */
 }
 
 .selected-word-box {
-display: inline-flex;
-    align-items: center;
-    /* background-color: #007BFF; */
-    background-color: #8ed1fc;
-    /* color: #ffffff; */
-    color: black;
-    padding: 6px;
-    border-radius: 11px;
-    margin-left: 5px;
-    margin-right: 10px;
-    animation: fadeIn 0.5s ease-out;
-    border: 1px solid #8080808a;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 55%);
+  display: inline-flex;
+  align-items: center;
+  background-color: #8ed1fc;
+  color: black;
+  padding: 6px;
+  border-radius: 11px;
+  margin-left: 5px;
+  margin-right: 10px;
+  animation: fadeIn 0.5s ease-out;
+  border: 1px solid #8080808a;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 55%);
 }
 
 .delete-button {
@@ -119,9 +104,11 @@ display: inline-flex;
   padding: 2px 5px;
   color: #ffffff;
 }
+
 .delete-button:hover {
   background-color: #e83535;
 }
+
 .delete-button:active {
   color: purple;
   background-color: #b82a2a;
@@ -136,13 +123,11 @@ input::placeholder {
 }
 
 /* Suggestion Dropdown Styles*/
-
 .suggestions-dropdown {
   position: absolute;
   width: 100%;
   max-height: 200px;
   overflow-y: auto;
-  /* border: 1px solid #ccc; */
   background-color: #f6f6fa70;
   z-index: 1;
   list-style-type: none;
@@ -153,15 +138,11 @@ input::placeholder {
   width: 90%;
   margin: 3px 20px;
   border-radius: 10px;
-
-  /* animation */
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-out;
   transition-delay: 0s;
-
   margin-top: 4px;
-  /* margin-left: 10px; */
   margin-right: 10px;
 }
 .suggestions-dropdown.open {
@@ -193,12 +174,15 @@ input::placeholder {
   );
   color: black;
 }
+
 .suggestions-dropdown li.disabled {
   color: #ccc;
   cursor: not-allowed;
 }
 
-/* animation */
+.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
 
 @keyframes fadeIn {
   0% {
@@ -217,16 +201,3 @@ input::placeholder {
     opacity: 0;
   }
 }
-
-.fade-out {
-  animation: fadeOut 0.5s ease-out forwards;
-}
-
-/* this area is under construction =) */
-
-/* @media (max-width: 768px) {
-  .autocomplete-input {
-    max-width: 100%;
-    min-width: 100%;
-  }
-} */
