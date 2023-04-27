@@ -26,7 +26,7 @@ const Autocomplete = ({ trie }) => {
 
   const handleInputChange = (e) => {
     const newInputValue = e.target.value;
-    setTempInputValue(newInputValue);
+    setTempInputValue(newInputValue.toLowerCase());
     setTyping(true);
 
     if (newInputValue) {

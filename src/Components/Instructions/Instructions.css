@@ -2,30 +2,30 @@
   position: relative;
 }
 .instructions-wrapper #lamp {
-  display: inline-block; 
+  display: inline-block;
 }
 
 .instructions-wrapper h3 {
   margin: 0 auto;
   width: 95px;
   cursor: pointer;
-  border: 1px solid #80808045;
+  /* border: 1px solid #80808045; */
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 39%);
 }
-.instructions-wrapper h3:hover{
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 60%);
+.instructions-wrapper h3:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 60%);
 }
 
-.instructions-wrapper h3:hover #lamp{
-    filter: brightness(120%);
-    transition: filter 0.2s ease-in-out;
-   transform: scale(1.1);
+.instructions-wrapper h3:hover #lamp {
+  filter: brightness(120%);
+  transition: filter 0.2s ease-in-out;
+  transform: scale(1.1);
 }
 
-.instructions-wrapper h3:active{
-    color:#e0e09d;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 90%);
+.instructions-wrapper h3:active {
+  color: #e0e09d;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 90%);
 }
 
 .overlay {
