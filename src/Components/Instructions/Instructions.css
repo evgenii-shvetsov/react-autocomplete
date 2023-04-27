@@ -9,7 +9,6 @@
   margin: 0 auto;
   width: 95px;
   cursor: pointer;
-  /* border: 1px solid #80808045; */
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 39%);
 }
@@ -55,7 +54,10 @@
 }
 
 .info-block p {
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
+  text-align: justify;
+  margin: auto;
+ 
 }
 
 .trie-words-block {

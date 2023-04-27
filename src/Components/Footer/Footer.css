@@ -1,19 +1,18 @@
 footer {
-    position: absolute;
-    right:0;
-    top: 0;
-  /* margin: 50px auto; */
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 300px;
   height: 200px;
 }
 
-.footer-text h3{
+.footer-text h3 {
   font-weight: 400;
 }
 
 .footer-text a {
-    margin-top: -10px;
-    display: block;
+  margin-top: -10px;
+  display: block;
 }
 
 .social_media {
@@ -24,8 +23,7 @@ footer {
 }
 
 .social_media img {
-  /* width: 40px; */
-  width:30px;
+  width: 30px;
   border-radius: 10px;
 }
 

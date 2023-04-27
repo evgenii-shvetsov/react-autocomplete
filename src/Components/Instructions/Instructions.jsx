@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import "./Instructions.css";
 
 const Instructions = () => {
@@ -12,25 +12,28 @@ const Instructions = () => {
     setIsOpen(!isOpen);
   };
 
-
   return (
     <div className="instructions-wrapper">
-      <h3 onClick={toggleInfoBlock}>Intro <span id="lamp">💡</span></h3>
+      <h3 onClick={toggleInfoBlock}>
+        Intro <span id="lamp">💡</span>
+      </h3>
       {isOpen && (
         <>
           <div className="overlay" onClick={handleClickOutside}></div>
           <div className="info-block">
             <p>
-              📚 <strong>Trie</strong>  (also known as a prefix tree, the correct pronunciation is
-              “try”) is a tree-like data structure that stores a dynamic set of
-              strings. It's particularly useful for applications involving
-              searching, sorting, and storing strings with shared prefixes, such
-              as dictionaries and autocomplete functionalities.
-            </p>
+              &nbsp; &nbsp; In this project, I constructed an Autocomplete
+              Component by combining the power of React and the Trie data
+              structure. 📚
+              <strong>Trie</strong> (also known as a prefix tree and pronounced
+              as “try”) is a tree-like data structure that efficiently stores a
+              dynamic set of strings.
+            </p>{" "}
+            <br />
             <p>
-              For Demo purposes, I used 78 words, three words per each letter in
-              the English Alphabet
-            </p>
+              &nbsp;For Demo purposes, I used 78 words, three words per each letter in the English Alphabet. For more info, please check my GitHub.
+            </p>{" "}
+            <br />
             <div className="trie-words-block">
               <strong> This are the words in the Trie:</strong> <br />
               <p id="words-object">
