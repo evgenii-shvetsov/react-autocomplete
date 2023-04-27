@@ -1,7 +1,7 @@
 footer {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 50px;
+  top: 20px;
   width: 300px;
   height: 200px;
 }
