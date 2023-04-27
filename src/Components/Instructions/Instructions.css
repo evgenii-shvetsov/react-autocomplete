@@ -2,8 +2,20 @@
   position: relative;
 }
 
-h3 {
+.instructions-wrapper h3 {
+  margin: 0 auto;
+  width: 95px;
   cursor: pointer;
+  border: 1px solid #80808045;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 39%);
+}
+.instructions-wrapper h3:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 60%);
+}
+.instructions-wrapper h3:active{
+    color:#e0e09d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 90%);
 }
 
 .overlay {
@@ -23,7 +35,7 @@ h3 {
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 80%;
-  max-width: 665px;
+  max-width: 670px;
   background-color: #e7d4f1;
   color: black;
   border-radius: 8px;
@@ -36,14 +48,14 @@ h3 {
   margin-bottom: 1rem;
 }
 
-.trie-words-block{
-    margin: 0 auto;
-    width: 400px;
+.trie-words-block {
+  margin: 0 auto;
+  width: 400px;
 }
 
-#words-object{
-    text-align: left;
-    margin-left: 50px;
+#words-object {
+  text-align: left;
+  margin-left: 50px;
 }
 
 @media screen and (max-height: 910px) {
@@ -51,8 +63,6 @@ h3 {
     height: 90%;
   }
 }
-
-
 
 @media screen and (max-width: 480px) {
   .info-block {
