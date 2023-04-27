@@ -15,7 +15,7 @@ const Instructions = () => {
 
   return (
     <div className="instructions-wrapper">
-      <h3 onClick={toggleInfoBlock}>Intro 💡</h3>
+      <h3 onClick={toggleInfoBlock}>Intro <span id="lamp">💡</span></h3>
       {isOpen && (
         <>
           <div className="overlay" onClick={handleClickOutside}></div>
