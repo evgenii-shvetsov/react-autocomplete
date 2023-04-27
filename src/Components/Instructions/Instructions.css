@@ -24,7 +24,7 @@ h3 {
   z-index: 1000;
   width: 80%;
   max-width: 665px;
-  background-color: white;
+  background-color: #e7d4f1;
   color: black;
   border-radius: 8px;
   padding: 20px;
@@ -34,6 +34,22 @@ h3 {
 
 .info-block p {
   margin-bottom: 1rem;
+}
+
+.trie-words-block{
+    margin: 0 auto;
+    width: 400px;
+}
+
+#words-object{
+    text-align: left;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 910px) {
+  .info-block {
+    height: 90%;
+  }
 }
 
 
